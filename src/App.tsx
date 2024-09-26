@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState} from 'react';
 import Formulario from './Formulario';
+
 
 const App: React.FC = () => {
 

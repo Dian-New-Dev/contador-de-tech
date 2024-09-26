@@ -1,17 +1,32 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import ListaDivs from './ListaDivs';
 
 const Formulario: React.FC = () => {
 
-    const [answer, setAnswer] = useState<string>('');
+    const [item, setItem] = useState<string>('');
+    const [techsArray, setTechsArray] = useState<string[]>();
 
     function handleInput(e:React.ChangeEvent<HTMLInputElement>) {
-        setAnswer(e.target.value)        
+        setItem(e.target.value)
+        //setTechsArray(e.target.value)        
     }
 
     function handleSubmit(e: React.FormEvent) {
         e.preventDefault();
-        console.log(answer) //esse é o que nos interessa
+
+        setTechsArray([
+            ...(techsArray || []), // "|| []" assegura que mesmo se techsArray for undefined, ele virará um array
+            item 
+        ])
+
+        
+
+
+
+
     }
+
+
     
     return (
 
@@ -23,7 +38,7 @@ const Formulario: React.FC = () => {
             >
                 
                 <input
-                className='w-[300px] p-2'
+                className='w-[300px] p-2 rounded-md'
                 onChange={handleInput}
                 name='texto' 
                 type="text"
@@ -33,6 +48,10 @@ const Formulario: React.FC = () => {
                 <button className='border-2 border-gray p-2 rounded-md bg-green-500 text-gray-100 hover:bg-green-800' type='submit'>Submeter</button>
                 <button className='border-2 border-gray p-2 rounded-md bg-green-500 text-gray-100 hover:bg-green-800' type='reset'>Limpar</button>
             </form>
+
+            <ListaDivs techsArray={techsArray} />
+
+
         </div>
 
 
