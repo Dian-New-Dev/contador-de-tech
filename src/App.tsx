@@ -1,43 +1,20 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import Formulario from './Formulario';
 
 const App: React.FC = () => {
 
-    const [answer, setAnswer] = useState<string>('');
-
-    function handleInput(e:React.ChangeEvent<HTMLInputElement>) {
-        setAnswer(e.target.value)        
-    }
-
-    function handleSubmit(e: React.FormEvent) {
-        e.preventDefault();
-        console.log(answer) //esse é o que nos interessa
-    }
-    
     return (
-        <div className='grid place-items-center'>
-            <div className='bg-blue-950 w-full h-full'>
-                <div>
-                    <h1>CONTADOR DE TECHS</h1>
-                </div>
+        <div>
+            <div className='grid place-items-center'>
+                <div className='bg-blue-950 w-full h-full flex flex-col gap-4'>
+                    <div className='bg-blue-900'>
+                        <h1 className='text-2xl text-center font-bold text-green-600 italic p-8'>CONTADOR DE TECHS</h1>
+                    </div>
 
-                <div>
-                    <form name='formulario' onSubmit={handleSubmit} className='flex gap-4'>
-                        
-                        <input onChange={handleInput} name='texto'  type="text" placeholder='Tech' />
-                        <button type='submit'>Submeter</button>
-                        
-                        <button type='reset'>Limpar</button>
-                    </form>
-
-                <div>
-
-                </div>
-
-
+                    <Formulario />
+                    
                     
                 </div>
-                
-                
             </div>
         </div>
   );
