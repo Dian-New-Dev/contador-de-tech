@@ -10,3 +10,10 @@
 html {
     background-color: black;
 }
+
+.palitos {
+    width: 10px;
+    height: full;
+    background-color: #22c55e;
+    border-radius: 0.375rem;
+}

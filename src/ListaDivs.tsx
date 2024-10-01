@@ -8,10 +8,19 @@ const ListaDivs: React.FC<ListaDivsProps> = ({techsArray}) => {
 
     const [lista, setLista] = useState<JSX.Element[]>([]);
 
-    function aumentarScore(index:number) {
+    function selecionarDiv(index:number) {
         const numero = index.toString();
         const divSelecionada = document.getElementById(numero)
-        console.log(divSelecionada)
+        
+        anexarPalitoNaVid(divSelecionada);
+    }
+
+    function anexarPalitoNaVid(div:HTMLElement) {
+        console.log('função 2')
+        const palito = document.createElement('div');
+        console.log(palito)
+        palito.classList.add('palitos');
+        div.appendChild(palito);
     }
 
     useEffect(() => {
@@ -20,10 +29,15 @@ const ListaDivs: React.FC<ListaDivsProps> = ({techsArray}) => {
                 <div key={index} className='border rounded-md flex'>
                     <div className='w-[25%] p-4 bg-blue-900 rounded-md'>
                         <h2 className='text-center p-4 w-full border rounded-md bg-blue-950 text-green-500 font-bold text-2xl'>{tech}</h2>
-                        <button className='text-center w-full p-2 text-green-200 bg-green-500 hover:bg-green-600 ' onClick={() => aumentarScore(index)}>Add</button>
+                        <button 
+                        className='text-center w-full p-2 text-green-200 bg-green-500 hover:bg-green-600 ' 
+                        onClick={() => selecionarDiv(index)}
+                        >
+                            Add
+                        </button>
                     </div>
     
-                    <div id={index.toString()} className={`w-[75%] p-1`}>
+                    <div id={index.toString()} className={`w-[75%] p-1 flex gap-1`}>
     
                     </div>
     
