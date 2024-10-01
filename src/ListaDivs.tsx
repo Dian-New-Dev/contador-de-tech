@@ -1,78 +1,67 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 
 interface ListaDivsProps {
     techsArray: string[] | undefined;
 }
 
-const ListaDivs: React.FC<ListaDivsProps> = ({techsArray}) => {
-
+const ListaDivs: React.FC<ListaDivsProps> = ({ techsArray }) => {
     const [lista, setLista] = useState<JSX.Element[]>([]);
 
-    function selecionarDiv(index:number) {
+    // Função para selecionar uma div com base no índice
+    const selecionarDiv = useCallback((index: number) => {
         const numero = index.toString();
-        const divSelecionada = document.getElementById(numero)
-        
-        anexarPalitoNaVid(divSelecionada);
-    }
+        const divSelecionada = document.getElementById(numero);
 
-    function anexarPalitoNaVid(div:HTMLElement) {
-        console.log('função 2')
+        if (divSelecionada) {
+            anexarPalitoNaVid(divSelecionada, index);
+        } else {
+            console.error(`Elemento com ID ${numero} não encontrado`);
+        }
+    }, []);
+
+    // Função para anexar um palito na div e aumentar o placar
+    const anexarPalitoNaVid = useCallback((div: HTMLElement, index: number) => {
         const palito = document.createElement('div');
-        console.log(palito)
         palito.classList.add('palitos');
         div.appendChild(palito);
-    }
+        aumentarScore(index);
+    }, []);
+
+    // Função para aumentar o placar na div correta
+    const aumentarScore = useCallback((index: number) => {
+        const placarArray = document.querySelectorAll('.placares');
+        const valorAtualStr = placarArray[index].textContent;
+        const valorAtualNum = Number(valorAtualStr);
+        const valorFinalStr = (valorAtualNum + 1).toString();
+        placarArray[index].textContent = valorFinalStr;
+    }, []);
 
     useEffect(() => {
         if (techsArray) {
             const divs = techsArray.map((tech, index) => (
-                <div key={index} className='border rounded-md flex'>
+                <div key={index} className='relative border border-gray-700 rounded-md flex'>
                     <div className='w-[25%] p-4 bg-blue-900 rounded-md'>
-                        <h2 className='text-center p-4 w-full border rounded-md bg-blue-950 text-green-500 font-bold text-2xl'>{tech}</h2>
+                        <h2 className='text-center p-4 w-full border border-gray-700 rounded-md bg-blue-950 text-green-500 font-bold text-2xl'>{tech}</h2>
                         <button 
-                        className='text-center w-full p-2 text-green-200 bg-green-500 hover:bg-green-600 ' 
-                        onClick={() => selecionarDiv(index)}
+                            className='rounded-md border border-gray-700 text-center w-full p-2 text-green-200 bg-green-500 hover:bg-green-700' 
+                            onClick={() => selecionarDiv(index)}
                         >
                             Add
                         </button>
                     </div>
-    
-                    <div id={index.toString()} className={`w-[75%] p-1 flex gap-1`}>
-    
-                    </div>
-    
+
+                    <div id={index.toString()} className='w-[75%] p-1 flex gap-1'></div>
+
+                    <p className='placares absolute w-[50px] h-[50px] grid place-items-center border border-gray-700 bg-green-200 text-blue-950 font-bold text-2xl right-0 rounded-md'>
+                        0
+                    </p>
                 </div>
-            ))
-        setLista(divs)
+            ));
+            setLista(divs);
         }
+    }, [techsArray, selecionarDiv]);
 
-    }, [techsArray])
-
-
-   
-    
-    return (
-
-        <div className='flex flex-col gap-8'>
-            {lista}
-        </div>
-
-    );
+    return <div className='flex flex-col gap-8'>{lista}</div>;
 };
 
 export default ListaDivs;
-
-// const lista = techsArray?.map(
-//     techsArray =>
-//     <div className='border rounded-md flex' id={`${techsArray}'-Pilha'`} key={techsArray}>
-//         <div className='w-[25%] border p-2 bg-green-50'>
-//             <h2 ref={techsArrayRef} className='font-bold text-lg text-green-500'>{techsArray}</h2> 
-//             <button onClick={() => aumentar(techsArrayRef)} >Add Count</button>
-//         </div>
-
-//         <div ref={index+1} className={`w-[75%] p-1`}>
-
-//         </div>
-        
-//     </div>
-// )
