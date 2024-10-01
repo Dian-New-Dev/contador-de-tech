@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import ListaDivs from './ListaDivs';
 
 const Formulario: React.FC = () => {
 
     const [item, setItem] = useState<string>('');
-    const [techsArray, setTechsArray] = useState<string[]>();
+    const [techsArray, setTechsArray] = useState<string[] | undefined>();
 
     function handleInput(e:React.ChangeEvent<HTMLInputElement>) {
         setItem(e.target.value)
@@ -18,19 +18,15 @@ const Formulario: React.FC = () => {
             ...(techsArray || []), // "|| []" assegura que mesmo se techsArray for undefined, ele virará um array
             item 
         ])
-
-        
-
-
-
-
     }
+
+    
 
 
     
     return (
 
-        <div className='p-4'>
+        <div className='p-4 flex flex-col gap-8'>
             <form
             name='formulario'
             onSubmit={handleSubmit}
