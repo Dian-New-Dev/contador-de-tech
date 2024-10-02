@@ -5,7 +5,7 @@ import Aviso from './Aviso';
 const Formulario: React.FC = () => {
 
     const [item, setItem] = useState<string>('');
-    const [techsArray, setTechsArray] = useState<string[] | undefined>();
+    const [techsArray, setTechsArray] = useState<string[]>([]);
 
     function handleInput(e:React.ChangeEvent<HTMLInputElement>) {
         const inputMinuscula = e.target.value.toLocaleLowerCase();
