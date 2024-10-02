@@ -12,8 +12,9 @@
 
 ## Funcionalidades ainda não implementadas
 
-1) Salvar os dados em localStorage para eles persistirem mesmo após tualizar a página
-2) Refatorar o código para retirar programação imperativa e métodos de manipulação do DOM.
+1) Salvar os dados em localStorage para eles persistirem mesmo após tualizar a página.
+2) Fazer com que submissão de strings repetidas contem como ponto para a entrada original, ao invés de criar duplicata. 
+3) Refatorar o código para retirar programação imperativa e métodos de manipulação do DOM.
 
 ## Aprendizado
 
