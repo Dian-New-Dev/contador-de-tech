@@ -8,8 +8,9 @@ const Formulario: React.FC = () => {
     const [techsArray, setTechsArray] = useState<string[] | undefined>();
 
     function handleInput(e:React.ChangeEvent<HTMLInputElement>) {
-        setItem(e.target.value)
-        //setTechsArray(e.target.value)        
+        const inputMinuscula = e.target.value.toLocaleLowerCase();
+        setItem(inputMinuscula)
+        //passa tudo minusculo \/        
     }
 
     function handleSubmit(e: React.FormEvent) {
@@ -23,6 +24,9 @@ const Formulario: React.FC = () => {
             }
         }
         //se usuario não inputou valor repetido, segue:
+        //converte primeira letra para maiusculo
+        
+
         setTechsArray([
             ...(techsArray || []), // "|| []" assegura que mesmo se techsArray for undefined, ele virará um array
             item 
