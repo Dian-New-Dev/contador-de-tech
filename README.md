@@ -15,7 +15,10 @@
 1) Salvar os dados em localStorage para eles persistirem mesmo após tualizar a página.
 2) ~~Fazer com que submissão de strings repetidas contem como ponto para a entrada original, ao invés de criar duplicata.~~ (feito) 
 3) ~~Fazer com que o campo de submissão apague após a submissão de uma nova string~~ (feito)
-3) Refatorar o código para retirar programação imperativa e métodos de manipulação do DOM.
+4) Refatorar o código para retirar programação imperativa e métodos de manipulação do DOM.
+5) Aplicar filtros que renderizem as entradas do usuário em seções específicas (front-end, back-end, banco de dados, etc)
+6) Melhorar a interface para ter mais techs em uma única tela sem ter que scrollar excessivamente
+7) Refatorar para um código 100% declarativo, retirando métodos JS de manipulação direta do DOM.
 
 ## Aprendizado
 
